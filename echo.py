@@ -11,21 +11,25 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+
 @dp.message(Command(commands=["start"]))
 async def process_start_command(message: Message):
     await message.answer(
         f"Привет, {message.from_user.first_name}! Это бот для отправки сообщений."
     )
 
+
 @dp.message(Command(commands=["help"]))
 async def process_help_command(message: Message):
     await message.answer(
-        "Напиши мне что-нибудь и в ответ " 
+        "Напиши мне что-нибудь и в ответ "
         "я пришлю тебе твое сообщение"
     )
 
+
 async def send_echo(message: Message):
     await message.answer(message.text)
+
 
 async def send_content_echo(message: Message, content_type: str):
     if content_type == "photo":
@@ -39,9 +43,8 @@ async def send_content_echo(message: Message, content_type: str):
 def create_content_handlers(content_type):
     async def handler(message: Message):
         await send_content_echo(message, content_type)
-    return handler
-    
 
+    return handler
 
 
 CONTENT_HANDLERS = {
@@ -55,7 +58,7 @@ CONTENT_HANDLERS = {
 for content_type, filter_ in CONTENT_HANDLERS.items():
     dp.message.register(create_content_handlers(content_type), filter_)
 
-dp.message.register(send_echo) 
+dp.message.register(send_echo)
 
 if __name__ == '__main__':
     dp.run_polling(bot)
