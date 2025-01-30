@@ -1,10 +1,9 @@
 import requests
 import time
-import os
-from dotenv import load_dotenv
+from environs import Env
 
-load_dotenv()
-
+env = Env()
+env.read_env()
 
 API_URL = 'https://api.telegram.org/bot'
 ANIMAL_APIS = {
@@ -21,7 +20,7 @@ ANIMAL_APIS = {
         'extract_image_url': lambda response: response.json()['image']
     }
 }
-BOT_TOKEN = os.getenv('BOT_TOKEN')
+BOT_TOKEN = env('BOT_TOKEN')
 TEXT = 'Ура! Классный апдейт!'
 
 offset = -2
