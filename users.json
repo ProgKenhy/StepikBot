@@ -1,1 +1,14 @@
-{"2084948859": {"in_game": false, "total_games": 2, "wins": 1, "draws": 0}}
+{
+  "2084948859": {
+    "in_game": false,
+    "total_games": 13,
+    "wins": 5,
+    "draws": 4
+  },
+  "1100162526": {
+    "in_game": false,
+    "total_games": 8,
+    "wins": 2,
+    "draws": 4
+  }
+}

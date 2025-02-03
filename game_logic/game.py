@@ -1,20 +1,14 @@
-from random import choice
-
-from lexicon.lexicon import LEXICON_RU
-
-
-def game_result(user_choice: str) -> bool | None:
+def game_result(user_choice: str, bot_choice: str) -> bool | None:
     user_choice = user_choice.lower()
+    bot_choice = bot_choice.lower()
 
     variants = {
-        'ножницы': {'бумага': True, 'камень': False},
-        'бумага': {'камень': True, 'ножницы': False},
-        'камень': {'ножницы': True, 'бумага': False},
+        'ножницы': {'бумага': False, 'камень': True},
+        'бумага': {'камень': False, 'ножницы': True},
+        'камень': {'ножницы': False, 'бумага': True},
     }
 
-    bot_choice = choice(list(variants.keys()))
-
-    if user_choice.lower() == bot_choice:
+    if user_choice == bot_choice:
         return None
 
     return variants[bot_choice][user_choice]
